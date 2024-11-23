@@ -4,34 +4,31 @@ import com.dev2prod.product.entity.Product;
 import com.dev2prod.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-@RefreshScope
 public class ProductController {
+	
     @Autowired
     private ProductService productService;
 
-    @Value("${product.message}")
-    String message;
-
-    @PostMapping("/addProducts")
-    public List<Product> addProducts(@RequestBody List<Product> productList){
-        return productService.addProducts(productList);
+    @PostMapping("/product")
+    public Product addProduct(@RequestBody Product product){
+        return productService.addProducts(product);
     }
 
-    @GetMapping("/getProducts")
+    @GetMapping("/products")
     public List<Product> getProducts(){
-        System.out.println("Message from repo -> "+message);
         return productService.getProducts();
     }
-
-    @GetMapping("/getProducts/{productIdsList}")
-    public List<Product> getProductsByIds(@PathVariable List<Long> productIdsList){
-        return productService.getProductsByIds(productIdsList);
+    
+    @GetMapping("/product/{productName}")
+    public Product getProducts(@PathVariable String productName){
+        return productService.getProduct(productName);
     }
+
+    
 }

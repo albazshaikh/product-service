@@ -12,15 +12,17 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    public List<Product> addProducts(List<Product> productList) {
-        return productRepository.saveAll(productList);
+    
+    public Product addProducts(Product product) {
+        return productRepository.save(product);
     }
 
     public List<Product> getProducts() {
         return productRepository.findAll();
     }
-
-    public List<Product> getProductsByIds(List<Long> productIdsList) {
-        return productRepository.findAllById(productIdsList);
+    
+    public Product getProduct(String productName) {
+    	return productRepository.findByProductName(productName);
     }
+
 }

@@ -1,17 +1,45 @@
 package com.dev2prod.product.entity;
 
-import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
-
-@Entity
-@Data
-@Table(name = "PRODUCT")
+@Document(collection = "Product")
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+	
     private String productName;
     private Integer quantity;
     private Double amount;
+ 
+    
+	public Product() {
+	}
+	public Product(String productName, Integer quantity, Double amount) {
+
+		this.productName = productName;
+		this.quantity = quantity;
+		this.amount = amount;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	public Double getAmount() {
+		return amount;
+	}
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+    
+    
+    
+    
 }
